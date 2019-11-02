@@ -1,0 +1,53 @@
+---js
+{
+  layout: 'layouts/base.njk',
+  id: function() {
+    return this.ctx.page.fileSlug
+  }
+}
+---
+{{ content | safe }}
+<hr>
+<div style="text-align: center;">
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var clapRef = db.collection('claps').doc(`{{ id() }}`);
+    clapRef.get()
+    .then((docSnapshot) => {
+      if (docSnapshot.exists) {
+        clapRef.onSnapshot((doc) => {
+          document.getElementById('clapCount').innerHTML = `${doc.data().clapCount} of claps`;
+        });
+      } else {
+        clapRef.set({
+          clapCount: 0
+        }).then(function() {
+          db.collection('claps').doc(`{{ page.fileSlug }}`).onSnapshot(function(doc) {
+            document.getElementById('clapCount').innerHTML = `${doc.data().clapCount} of claps`;
+          });
+        });
+      }
+    });
+    
+    clap = function(article) {
+      var increment = firebase.firestore.FieldValue.increment(1);
+      clapRef.update({
+        clapCount: increment
+      });
+    }
+  });
+  </script>
+  <span style="font-size: 50px"><a id="clap" onclick="clap(`{{ page.fileSlug }}`)" class="clapCount">👏🏽</a></span>
+  <p id="clapCount"></p>
+</div>
+
+<hr>
+
+<div style="text-align: center;">
+  {% include 'layouts/author.njk' %}
+</div>
+
+<hr>
+<div style="text-align: center;">
+  <p><a href="{{ '/' | url }}">← Home</a></p>
+</div>

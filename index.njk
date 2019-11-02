@@ -1,0 +1,33 @@
+---
+pagination:
+  data: collections.posts
+  size: 5
+  alias: posts
+  reverse: true
+layout: layouts/base.njk
+---
+{# <pre>{{ collections.posts | dump }}</pre> #}
+{% for post in posts %}
+<div class="post-preview">
+  <a href="{{ post.url | url }}">
+    <h2 class="post-title">
+       {{ post.data.title }}
+    </h2>
+    <h3 class="post-subtitle">
+       {{ post.data.description }}
+    </h3>
+  </a>
+  <p class="post-meta">Posted by <span style="background-image: url('https://res.cloudinary.com/tamas/image/upload/f_auto,q_auto,w_26,h_26,c_thumb,g_face/v1568271400/tamas.jpg');"></span>{{ post.data.author }} on {{ post.data.date | formatDate }}.</p>
+</div>
+<hr>
+{% endfor %}
+{# <pre>{{ pagination | dump }}</pre> #}
+<div style="text-align: center;">
+  {% if pagination.previous %}
+  <a class="btn btn-primary float-left" href="{{ pagination.previousPageLink | url }}">← Newer Posts</a>
+  {% endif %}
+
+  {% if pagination.next %}
+  <a class="btn btn-primary float-right" href="{{ pagination.nextPageLink | url }}">Older Posts →</a>
+  {% endif %}
+</div>

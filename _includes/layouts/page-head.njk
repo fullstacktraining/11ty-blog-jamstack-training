@@ -1,0 +1,19 @@
+<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+        {% if author %}
+          <h1>{{ title }}</h1>
+          <h2 class="subheading">{{ description }}</h2>
+          <p class="meta">Posted by <span style="background-image: url('https://res.cloudinary.com/tamas/image/upload/f_auto,q_auto,w_26,h_26,c_thumb,g_face/v1568271400/tamas.jpg');"></span> {{ author }} on {{ date | formatDate }}.</span></p>
+        {% else %}
+          <h1>{{ title }}</h1>
+          <h2 class="subheading">{{ description }}</h2>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
