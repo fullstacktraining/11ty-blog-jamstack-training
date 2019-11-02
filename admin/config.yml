@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+collections:
+  - name: 'blog'
+    label: 'Blog'
+    folder: 'posts'
+    create: true
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Date', name: 'date', widget: 'datetime' }
+      - { label: 'Author', name: 'author', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - {
+        label: 'Layout',
+        name: 'layout',
+        widget: 'hidden',
+        default: 'layouts/post.njk'
+      }
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: 
+    api_key: 
+    default_transformations:
+      - fetch_format: auto
+        quality: auto
+        width: 400
+        crop: scale
