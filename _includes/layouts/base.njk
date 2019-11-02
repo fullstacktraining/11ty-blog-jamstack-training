@@ -1,0 +1,32 @@
+---
+title: 'My Blog'
+description: 'Thoughts of a Developer'
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ {% include 'layouts/header.njk' %}
+</head>
+
+<body>
+  {% include 'layouts/nav.njk' %}
+
+  {% include 'layouts/page-head.njk' %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+          {{ content | safe }}
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  {% include 'layouts/footer.njk' %}
+  {% include 'layouts/footer-scripts.njk' %}
+</body>
+
+</html>

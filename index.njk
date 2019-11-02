@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+---
+{# <pre>{{ collections.posts | dump }}</pre> #}
+{% for post in collections.posts %}
+<div class="post-preview">
+  <a href="{{ post.url | url }}">
+    <h2 class="post-title">
+       {{ post.data.title }}
+    </h2>
+    <h3 class="post-subtitle">
+       {{ post.data.description }}
+    </h3>
+  </a>
+</div>
+<hr>
+{% endfor %}
