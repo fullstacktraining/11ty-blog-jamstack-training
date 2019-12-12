@@ -16,14 +16,14 @@
     .then((docSnapshot) => {
       if (docSnapshot.exists) {
         clapRef.onSnapshot((doc) => {
-          document.getElementById('clapCount').innerHTML = `${doc.data().clapCount} of claps`;
+          document.getElementById('clapCount').innerHTML = `${doc.data().clapCount} claps`;
         });
       } else {
         clapRef.set({
           clapCount: 0
         }).then(function() {
           db.collection('claps').doc(`{{ page.fileSlug }}`).onSnapshot(function(doc) {
-            document.getElementById('clapCount').innerHTML = `${doc.data().clapCount} of claps`;
+            document.getElementById('clapCount').innerHTML = `${doc.data().clapCount} claps`;
           });
         });
       }
